@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "env": "^0.0.2",
+    "jsonfile": "^6.1.0",
     "nodemon": "^2.0.7",
     "tmi.js": "^1.5.0"
   }

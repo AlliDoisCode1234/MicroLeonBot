@@ -1,5 +1,10 @@
 const tmi = require('tmi.js');
 require('dotenv').config({ path: './.env' })
+const data = require('./data.json');
+const FILE_PATH = './data.json'
+
+
+jsonfile.writeFile(FILE_PATH, data)
 
 const microLeon = {};
 const client = new tmi.Client({
@@ -21,7 +26,7 @@ client.on('message', (channel, tags, message, self) => {
     // Ignore echoed messages.
     if (self) return;
 
-
+    // Add TTS(text to speech)
     if (message.toLowerCase().indexOf('teach them express') > -1 && tags.username !== 'funnycommentary' && tags.username !== 'imranbmohamed') {
         client.say(channel, `@${tags.username}, You are timed out for 'expressing' yourself`);
         client.say(channel, `/timeout @${tags.username} 3600 Asking me to teach Express`)
@@ -42,7 +47,7 @@ client.on('message', (channel, tags, message, self) => {
             microLeon[user] = 0;
         }
 
-        if (user === 'funnycommentary') {
+        if (user === 'funnycommentary' || user === 'imranbmohamed' || user === 'dvkr') {
             microLeon[user] += 1000000
         }
 
