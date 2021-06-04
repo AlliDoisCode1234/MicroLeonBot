@@ -3,10 +3,19 @@ require('dotenv').config({ path: './.env' })
 const data = require('./data.json');
 const FILE_PATH = './data.json'
 
-
-jsonfile.writeFile(FILE_PATH, data)
-
 const microLeon = {};
+
+jsonfile.readFile(FILE_PATH, (err, microLeon) => {
+    if (err) console.error(err)
+    console.dir(microLeon)
+})
+jsonfile.writeFile(FILE_PATH, data)
+jsonfile.writeFile(FILE_PATH, microLeon, (err) => {
+    if (err) console.error(err)
+})
+jsonfile.writeFileSync(FILE_PATH, microLeon, () => { })
+
+
 const client = new tmi.Client({
     options: { debug: true },
     connection: {
